@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Receta = ({receta}) => {
+const Comidas = ({receta}) => {
 
   //configuracion del modal
   const[ modalStyle] = useState(getModalStyle);
@@ -44,22 +44,23 @@ const Receta = ({receta}) => {
   }
 
   //extraer los valores del context
-    const {informacion,guardarIdReceta,guardarConsultar} = useContext(ModalContex);
+    const {informacion,guardarIdReceta,guardarConsultar,infocomida} = useContext(ModalContex);
 
     return (
         <div className="col-md-4 mb-3">
           <div className="card">
-              <h2 className="card-header text-center">{receta.strDrink}</h2>
+              <h2 className="card-header text-center">{receta.title}</h2>
 
-              <img className="card-img-top" src={receta.strDrinkThumb}
-                   alt={`Imagen de ${receta.strDrink}`}/>
+              <img className="card-img-top" src={receta.image}
+                   alt={`Imagen de ${receta.title}`}/>
 
               <div className="card-body">
                   <button
                     type="button"
                     className="btn btn-block btn-primary"
                     onClick= {() => {
-                      guardarIdReceta(receta.idDrink);
+                      guardarConsultar('comida')
+                      guardarIdReceta(receta.id);
                       handleOpen();
                     }}
                   >
@@ -68,16 +69,20 @@ const Receta = ({receta}) => {
                   <Modal
                     open={open}
                     onClose={() => {
-                      guardarConsultar('bebida');
                       guardarIdReceta(null);
                       handleClose();
                     }}
                   >
                     <div style={modalStyle} className={classes.paper}>
-                      <h2>{informacion.strDrink}</h2>
+                      <h2>{receta.title}</h2>
                       <h3 className="mr-4">Instrucciones</h3>
-                      <p>{informacion.strInstructions}</p>
-                      <img className="img-fluid my-4" src={informacion.strDrinkThumb}/>
+                      {
+                        infocomida.map(paso => (
+                          <p>{paso.step}</p>
+                        ))
+                      }
+                      
+                      
                     </div>
                   </Modal>
               </div>
@@ -86,4 +91,4 @@ const Receta = ({receta}) => {
       );
 }
  
-export default Receta;
+export default Comidas;

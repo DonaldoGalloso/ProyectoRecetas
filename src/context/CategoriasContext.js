@@ -14,13 +14,18 @@ const CategoriasProvider = (props) => {
             const categorias = await axios.get(url);
             guardarCategorias(categorias.data.drinks);
         }
-        obtenerCategorias();
-    },[]);
+        if (categorias.length === 0)
+        {
+            obtenerCategorias();
+        }
+
+        
+    },[categorias]);
 
     return (
         <CategoriasContext.Provider
             value={{
-               categorias
+               categorias , guardarCategorias
             }}>
             {props.children}
         </CategoriasContext.Provider>
