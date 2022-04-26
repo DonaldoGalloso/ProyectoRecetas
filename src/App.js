@@ -4,7 +4,7 @@ import CategoriasProvider from './context/CategoriasContext';
 import RecetasProvider from './context/RecetasContext';
 import ListaRecetas from './components/ListaRecetas';
 import ModalProvider from './context/ModalContext';
-
+import PlatilloAleatorio from './components/PlatilloAleatorio';
 
 function App() {
   return (
@@ -17,7 +17,8 @@ function App() {
             <div className="row">
               <Formulario/>
             </div>
-             <ListaRecetas/> 
+             <ListaRecetas/>
+             <PlatilloAleatorio/>
           </div>
           
         </ModalProvider>

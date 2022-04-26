@@ -19,3 +19,19 @@ h1 {
   text-align: center;
   font-size: 3rem;
 }
+
+.width150{
+  width: 700px;
+}
+
+.mplatillo{
+  margin-left: 205px;
+}
+
+.colorprincipal{
+  color: #eb6864;
+}
+
+.width550{
+  width: 550px;
+}
